@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/css/home.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/voting.css'); ?>">
     <title>Home Page</title>
-    <!-- <a href="<?php echo base_url('auth/logout'); ?>">Logout</a> -->
     <?php $this->load->view('header', ['title' => 'Home Page']); ?>
 </head>
 <body>
@@ -44,20 +43,22 @@
     <div class="add-question">
         <?php if ($logged_in): ?>
             <button class="add-question" id="openModal">Ask a Question</button>
-            <!-- Modal -->
+            
             <div id="questionModal" class="modal">
                 <div class="modal-content">
                     <span class="close">&times;</span>
                     <h2>Ask a Question</h2>
+                    <div class="ask_question-div">
                     <form id="questionForm">
                         <label for="title">Question Title:</label>
-                        <input type="text" id="title" name="title" required><br>
+                        <input class="input1" type="text" id="title" name="title" required><br>
                         <label for="description">Question Description:</label>
                         <textarea id="description" name="description" required></textarea><br>
                         <div class="modal-actions">
                         <button type="submit">Submit</button>
                         </div>
                     </form>
+        </div>
 
                 </div>
             </div>
@@ -89,19 +90,10 @@
                     <span class="downvote-group <?= isset($user_votes[$question->id]) && $user_votes[$question->id] == 'down' ? 'active' : '' ?>" id="downvote_group_<?php echo $question->id; ?>"><a href="#" class="downvote" onclick="downvoteQuestion(<?php echo $question->id; ?>); return false;"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a><span id="downvotes_<?php echo $question->id; ?>"><?php echo $question->downvotes; ?></span></span>
                 </div>
                 <div id="comments">
-                    <!-- <?php echo $question->comment_count; ?></p> -->
+                    
                     <p><i class="far fa-comment"></i> <?php echo isset($question->comment_count) ? $question->comment_count : '0'; ?></p>
 
-                    <!-- <?php if (isset($question->comments) && !empty($question->comments)): ?>
-                        <?php $comments = explode("|||", $question->comments); ?>
-                        <?php foreach ($comments as $comment): ?>
-                            <div class="comment">
-                                <p><?php echo htmlspecialchars($comment); ?></p>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <p>No comments yet.</p>
-                    <?php endif; ?> -->
+                    
                 </div>
                 <?php if ($logged_in): ?>
                     
@@ -155,7 +147,6 @@
                 });
             });
 
-            // Reset form when closing the modal with the X button or clicking outside the modal
             var modal = document.getElementById('questionModal');
             var btn = document.getElementById('openModal');
             var span = document.getElementsByClassName("close")[0];
@@ -206,26 +197,20 @@ function downvoteQuestion(questionId) {
 }
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Get the modal
             var modal = document.getElementById('questionModal');
 
-            // Get the button that opens the modal
             var btn = document.getElementById('openModal');
 
-            // Get the <span> element that closes the modal
             var span = document.getElementsByClassName("close")[0];
 
-            // When the user clicks the button, open the modal 
             btn.onclick = function() {
                 modal.style.display = "block";
             }
 
-            // When the user clicks on <span> (x), close the modal
             span.onclick = function() {
                 modal.style.display = "none";
             }
 
-            // When the user clicks anywhere outside of the modal, close it
             window.onclick = function(event) {
                 if (event.target == modal) {
                     modal.style.display = "none";
@@ -286,8 +271,6 @@ function downvoteQuestion(questionId) {
         }
     }
 }
-
-
     </script>
 
 </body>

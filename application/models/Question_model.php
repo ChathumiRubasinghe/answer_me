@@ -8,15 +8,10 @@ class Question_model extends CI_Model {
         $query = $this->db->get('questions');
         return $query->result();
     }
-    
-    // public function add_question($data) {
-    //     // Insert the question into the database
-    //     $this->db->insert('questions', $data);
-    // }
 
     public function add_question($data) {
         $this->db->insert('questions', $data);
-        log_message('debug', 'Last Query: ' . $this->db->last_query()); // Check the actual executed SQL
+        log_message('debug', 'Last Query: ' . $this->db->last_query()); 
         log_message('debug', 'Session user_id: ' . $this->session->userdata('user_id'));
         return $this->db->affected_rows() > 0;
     }
@@ -37,7 +32,6 @@ class Question_model extends CI_Model {
         $this->db->where('questions.id', $question_id);
         $question = $this->db->get()->row();
         
-        // Check if the question exists before trying to increment the view count
         if ($question) {
             $this->increment_view_count($question_id);
         }
@@ -83,7 +77,6 @@ class Question_model extends CI_Model {
     
         if ($existing_vote) {
             if ($existing_vote->vote_type === $vote_type) {
-                // Remove vote if it's the same type, meaning the user is retracting their vote
                 $this->db->where('id', $existing_vote->id);
                 $this->db->delete('votes');
                 $currentVote = 'none'; 
@@ -93,7 +86,7 @@ class Question_model extends CI_Model {
                 $currentVote = $vote_type; 
             }
         } else {
-            // Insert new vote
+            // new vote
             $this->db->insert('votes', [
                 'question_id' => $question_id,
                 'user_id' => $user_id,
@@ -105,10 +98,8 @@ class Question_model extends CI_Model {
         // Update question vote counts
         $this->update_vote_counts($question_id);
     
-        // Complete transaction
         $this->db->trans_complete();
     
-        // Determine the result status and include the current vote status
         $status = $this->db->trans_status();
         return ['status' => $status, 'currentVote' => $currentVote];
     }
@@ -125,7 +116,6 @@ class Question_model extends CI_Model {
         $this->db->where('vote_type', 'down');
         $downvotes = $this->db->count_all_results('votes');
 
-        // Update questions table
         $this->db->where('id', $question_id);
         $this->db->update('questions', ['upvotes' => $upvotes, 'downvotes' => $downvotes]);
     }
@@ -144,7 +134,7 @@ class Question_model extends CI_Model {
         $this->db->select('questions.*, COALESCE(users.username, \'Anonymous\') as username, GROUP_CONCAT(DISTINCT CONCAT(COALESCE(users.username, \'Anonymous\'), ": ", comments.comment) SEPARATOR "|||") as comments, COUNT(DISTINCT comments.id) AS comment_count');
         $this->db->from('questions');
         $this->db->join('comments', 'comments.question_id = questions.id', 'left');
-        $this->db->join('users', 'users.id = questions.user_id', 'left');  // Ensure left join here
+        $this->db->join('users', 'users.id = questions.user_id', 'left'); 
     
         if (!empty($search_query)) {
             $this->db->group_start();

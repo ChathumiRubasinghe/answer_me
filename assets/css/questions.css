@@ -1,0 +1,110 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.question_page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    margin: 20px;
+
+}
+
+h2.question-title {
+    color: #16324e;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    color: #666;
+}
+
+.fa-user, .fa-calendar, .fa-thumbs-up, .fa-thumbs-down {
+    margin-right: 5px;
+}
+
+.question-description {
+    margin-top: 5px;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.question-comments {
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.comment {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px 15px;
+    width: 80%;
+    margin-top: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.comment p {
+    font-size: 14px;
+}
+
+.question-card-vote {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.upvote-group, .downvote-group {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.upvote-group:hover, .downvote-group:hover {
+    background-color: #e8f0fe;
+}
+
+.active {
+    color: #007bff;
+}
+
+#commentForm {
+    margin-top: 20px;
+}
+
+#commentForm textarea {
+    width: 80%;
+    height: 130px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#commentForm button {
+    background-color: #2f478e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px !important;
+    transition: background-color 0.2s ease;
+}
+
+#commentForm button:hover {
+    background-color: #0056b3;
+}
+
+/* media responsive */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+}

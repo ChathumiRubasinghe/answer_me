@@ -51,6 +51,4 @@ class User_model extends CI_Model {
         $this->db->where('id !=', $exclude_user_id);
         return $this->db->count_all_results() > 0;
     }
-    
-    
 }
