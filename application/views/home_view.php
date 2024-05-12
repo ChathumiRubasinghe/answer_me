@@ -51,7 +51,7 @@
                     <div class="ask_question-div">
                     <form id="questionForm">
                         <label for="title">Question Title:</label>
-                        <input type="text" id="title" name="title" required><br>
+                        <input class="input1" type="text" id="title" name="title" required><br>
                         <label for="description">Question Description:</label>
                         <textarea id="description" name="description" required></textarea><br>
                         <div class="modal-actions">
