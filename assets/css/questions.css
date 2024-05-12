@@ -1,4 +1,3 @@
-/* Overall body styling */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f0f2f5;
@@ -7,14 +6,21 @@ body {
     margin: 0;
 }
 
-/* Header and titles */
+.question_page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    margin: 20px;
+
+}
+
 h2.question-title {
     color: #16324e;
     font-size: 24px;
     margin-bottom: 10px;
 }
 
-/* Metadata styling, like user and date */
 p {
     font-size: 16px;
     color: #666;
@@ -24,14 +30,12 @@ p {
     margin-right: 5px;
 }
 
-/* Description of the question */
 .question-description {
     margin-top: 5px;
     font-size: 18px;
     margin-bottom: 20px;
 }
 
-/* Comments section styling */
 .question-comments {
     font-weight: bold;
     margin-top: 20px;
@@ -41,6 +45,7 @@ p {
     background-color: #fff;
     border-radius: 5px;
     padding: 10px 15px;
+    width: 80%;
     margin-top: 10px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
@@ -49,7 +54,6 @@ p {
     font-size: 14px;
 }
 
-/* Styling for voting buttons and vote counts */
 .question-card-vote {
     display: flex;
     align-items: center;
@@ -71,27 +75,26 @@ p {
     color: #007bff;
 }
 
-/* Comment form styling */
 #commentForm {
     margin-top: 20px;
 }
 
 #commentForm textarea {
-    width: 100%;
-    height: 100px;
+    width: 80%;
+    height: 130px;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
 }
 
 #commentForm button {
-    background-color: #007bff;
+    background-color: #2f478e;
     color: white;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 15px !important;
     transition: background-color 0.2s ease;
 }
 
@@ -99,7 +102,7 @@ p {
     background-color: #0056b3;
 }
 
-/* Responsive behavior */
+/* media responsive */
 @media (max-width: 768px) {
     body {
         padding: 10px;

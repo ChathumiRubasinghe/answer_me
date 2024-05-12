@@ -4,19 +4,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Question extends CI_Controller {
     public function __construct() {
         parent::__construct();
-        // Load the necessary model
         $this->load->model('Question_model');
     }
     
     public function add() {
         $title = $this->input->post('title');
         $description = $this->input->post('description');
-        $user_id = $this->session->userdata('user_id'); // Get user ID from session
+        $user_id = $this->session->userdata('user_id'); 
     
         $data = array(
             'title' => $title,
             'description' => $description,
-            'user_id' => $user_id // Include the user ID
+            'user_id' => $user_id 
         );
         $this->Question_model->add_question($data);
         redirect('home');
@@ -25,7 +24,6 @@ class Question extends CI_Controller {
 
     public function details($question_id) {
         $user_id = $this->session->userdata('user_id');
-        // $data['question'] = $this->Question_model->get_question_details($question_id);
         $data['question'] = $this->Question_model->get_question_details($question_id, $user_id);
         $data['comments'] = $this->Question_model->get_comments_by_question($question_id);
         $data['logged_in'] = $this->session->userdata('logged_in');

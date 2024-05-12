@@ -19,7 +19,6 @@
     <div id="ProfileDetails" class="tabcontent">
         
         <h3>Profile Details</h3>
-        <!-- Display Flash Messages -->
         <?php if ($this->session->flashdata('error')): ?>
             <p class="flash-message" style="color: red;"><?php echo $this->session->flashdata('error'); ?></p>
         <?php endif; ?>
@@ -39,7 +38,6 @@
         </div>
         
         <form id="editProfileForm" action="<?php echo base_url('user/update_profile'); ?>" method="post" style="display:none;">
-        <!-- Adding fields for username and email in the edit form -->
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($user->username); ?>" required>
             <label for="email">Email:</label>
@@ -73,7 +71,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
-            setTimeout(clearMessages, 10000); // Clear messages after 10 seconds
+            setTimeout(clearMessages, 10000); 
         });
 
         function openTab(evt, tabName) {

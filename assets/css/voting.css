@@ -1,24 +1,8 @@
 a {
 	text-decoration: none;
 	color: #4f4f4f;
-	/* font-size: 12px; */
 }
 
-/* a:hover .fa-thumbs-up {
-	color: #ff8b60;
-}
-
-a:hover .fa-thumbs-down {
-	color: #9494ff;
-}
-
-a .fa-thumbs-up {
-	color: #ff4400;
-}
-
-a .fa-thumbs-down {
-	color: #1861ff;
-} */
 
 a {
 	display: inline-flex;

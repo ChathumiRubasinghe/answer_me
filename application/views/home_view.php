@@ -271,8 +271,6 @@ function downvoteQuestion(questionId) {
         }
     }
 }
-
-
     </script>
 
 </body>

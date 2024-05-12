@@ -10,6 +10,7 @@
     <title>Question Details</title>
 </head>
 <body>
+    <div class="question_page">
         <h2 class="question-title"><?php echo $question->title; ?></h2>
         <p><span><i class="fa fa-user" aria-hidden="true"></i></span><span><?php echo $question->username; ?></span></p>
         <p><span><i class="fas fa-calendar"></i> </span><span><?php echo date('F j, Y', strtotime($question->created_at)); ?></span></p>
@@ -47,73 +48,74 @@
                 <span id="downvotes_<?= $question->id; ?>"><?= $question->downvotes; ?></span>
             </span>
         </div>
+        </div>
      
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     <script>
-
-function handleVote(response, questionId) {
-    $('#upvotes_' + questionId).text(response.upvotes);
-    $('#downvotes_' + questionId).text(response.downvotes);
-    if(response.currentVote === 'up') {
-        $('#upvote_group_' + questionId).addClass('active');
-        $('#downvote_group_' + questionId).removeClass('active');
-    } else if(response.currentVote === 'down') {
-        $('#downvote_group_' + questionId).addClass('active');
-        $('#upvote_group_' + questionId).removeClass('active');
-    } else {
-        $('#upvote_group_' + questionId).removeClass('active');
-        $('#downvote_group_' + questionId).removeClass('active');
-    }
-}
-
-function upvoteQuestion(questionId) {
-    $.ajax({
-        url: '<?= base_url("question/upvote/"); ?>' + questionId,
-        type: 'POST',
-        dataType: 'json',
-        success: function(response) {
-            handleVote(response, questionId);
-        },
-        error: function(xhr) {
-            alert('Error: ' + xhr.responseText);
-        }
-    });
-}
-
-function downvoteQuestion(questionId) {
-    $.ajax({
-        url: '<?= base_url("question/downvote/"); ?>' + questionId,
-        type: 'POST',
-        dataType: 'json',
-        success: function(response) {
-            handleVote(response, questionId);
-        },
-        error: function(xhr) {
-            alert('Error: ' + xhr.responseText);
-        }
-    });
-}
-    function postComment() {
-        var questionId = $('#question_id').val();
-        var comment = $('#comment').val();
-        
-        $.ajax({
-            url: '<?php echo base_url('question/post_comment'); ?>',
-            type: 'POST',
-            data: { question_id: questionId, comment: comment },
-            dataType: 'json',
-            success: function(response) {
-                if (response.success) {
-                    location.reload();
-                } else {
-                    alert('Error: ' + (response.error || 'Unknown error'));
-                }
-            },
-            error: function(xhr) {
-                alert('Error: ' + xhr.responseText);
+        function handleVote(response, questionId) {
+            $('#upvotes_' + questionId).text(response.upvotes);
+            $('#downvotes_' + questionId).text(response.downvotes);
+            if(response.currentVote === 'up') {
+                $('#upvote_group_' + questionId).addClass('active');
+                $('#downvote_group_' + questionId).removeClass('active');
+            } else if(response.currentVote === 'down') {
+                $('#downvote_group_' + questionId).addClass('active');
+                $('#upvote_group_' + questionId).removeClass('active');
+            } else {
+                $('#upvote_group_' + questionId).removeClass('active');
+                $('#downvote_group_' + questionId).removeClass('active');
             }
-        });
-    }
-</script>
+        }
+
+        function upvoteQuestion(questionId) {
+            $.ajax({
+                url: '<?= base_url("question/upvote/"); ?>' + questionId,
+                type: 'POST',
+                dataType: 'json',
+                success: function(response) {
+                    handleVote(response, questionId);
+                },
+                error: function(xhr) {
+                    alert('Error: ' + xhr.responseText);
+                }
+            });
+        }
+
+        function downvoteQuestion(questionId) {
+            $.ajax({
+                url: '<?= base_url("question/downvote/"); ?>' + questionId,
+                type: 'POST',
+                dataType: 'json',
+                success: function(response) {
+                    handleVote(response, questionId);
+                },
+                error: function(xhr) {
+                    alert('Error: ' + xhr.responseText);
+                }
+            });
+        }
+        function postComment() {
+            var questionId = $('#question_id').val();
+            var comment = $('#comment').val();
+            
+            $.ajax({
+                url: '<?php echo base_url('question/post_comment'); ?>',
+                type: 'POST',
+                data: { question_id: questionId, comment: comment },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        location.reload();
+                    } else {
+                        alert('Error: ' + (response.error || 'Unknown error'));
+                    }
+                },
+                error: function(xhr) {
+                    alert('Error: ' + xhr.responseText);
+                }
+            });
+        }
+    </script>
 </body>
 </html>

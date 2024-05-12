@@ -86,7 +86,7 @@ class Question_model extends CI_Model {
                 $currentVote = $vote_type; 
             }
         } else {
-            // Insert new vote
+            // new vote
             $this->db->insert('votes', [
                 'question_id' => $question_id,
                 'user_id' => $user_id,
