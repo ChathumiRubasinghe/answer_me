@@ -20,11 +20,6 @@ class Api extends CI_Controller {
         }
     }    
 
-    public function questions() {
-        $questions = $this->Question_model->get_recent_questions(); // Method to fetch all questions
-        $this->output->set_output(json_encode($questions)); 
-    }
-
     public function post_question() {
         $title = $this->input->post('title', TRUE); 
         $description = $this->input->post('description', TRUE);
