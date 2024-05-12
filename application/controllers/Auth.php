@@ -24,24 +24,23 @@ class Auth extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('User_model');  // Check this line carefully
+        $this->load->model('User_model');  
     }
 
     public function login_process() {
         $email = $this->input->post('email');
         $password = $this->input->post('password');
     
-        $user = $this->User_model->authenticate($email, $password); // This should now return the user object or false
+        $user = $this->User_model->authenticate($email, $password); 
         if ($user) {
             $this->session->set_userdata('logged_in', true);
-            $this->session->set_userdata('user_id', $user->id); // Store user ID in session
+            $this->session->set_userdata('user_id', $user->id);
             echo json_encode(['success' => true, 'redirect' => base_url('home')]);
         } else {
             echo json_encode(['success' => false, 'message' => 'Invalid email or password.']);
         }
     }
     
-
     public function logout() {
         $this->session->unset_userdata('logged_in');
         $this->session->sess_destroy();
