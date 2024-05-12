@@ -1,0 +1,86 @@
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+.user-profile-name{
+    text-align: center;
+    font-size: 30px;
+    margin-top: 20px;
+
+}
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+.tab button:hover {
+    background-color: #dddddd9e;
+}
+.tab button.active {
+    background-color: #0D47A1;
+    color: rgb(255, 255, 255);
+}
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    
+}
+.profile-container{
+    width: 60%;
+    margin-left: 20%;
+
+}
+#ProfileDetails{
+    /* display: block; */
+    display: flex;
+    justify-content: space-between;
+    /* text-align: center; */
+}
+form {
+    margin-top: 20px;
+}
+label {
+    margin-top: 10px;
+    display: block;
+    color: #666;
+}
+
+.btn {
+    padding: 10px 15px;
+    background-color: #0D47A1;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+.btn:hover {
+    background-color: #0D47A1;
+}
+input[type="text"], input[type="email"], textarea {
+    width: 90%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+button {
+    padding: 10px 15px;
+    background-color: #0D47A1;
+    border: none;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+button:hover {
+    background-color: #0D47A1;
+}

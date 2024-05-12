@@ -1,0 +1,224 @@
+/* Reset and Body styling for a clean look */
+body {
+  font-family: 'Arial', sans-serif;
+  /* background-color: #ffffff; */
+  margin: 0;
+  color: #333;
+
+  header ~ * {
+    padding: 10px;
+  }
+}
+.welcome-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  margin-left: 50px;
+}
+.welcome-image{
+  width: 350px;
+  margin-left: 70%;
+  margin-top: -220px;
+}
+div.question-card {
+  background-color: #f4f4f4;
+  border: 1px solid #f4f4f4;
+  border-radius: 10px;
+  padding: 20px;
+  margin-left: 50px;
+  margin-bottom: 20px; /* Space between cards */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+  transition: box-shadow 0.3s ease;
+  max-width: 80%;
+}
+.openModal{
+  cursor: pointer;
+  background-color: #333;
+}
+.question-card:hover {
+  box-shadow: 0 8px 12px rgba(0,0,0,0.15); /* Enhanced shadow on hover */
+}
+
+.question-card-title {
+  font-size: 32px;
+  margin-bottom: 10px; /* Space between title and voting buttons */
+}
+
+.question-card-vote {
+  display: flex;
+  align-items: center;
+}
+
+.add-question{
+    border: #266995;
+    padding: 20px;
+    border-radius: 8px;
+    height: 60px;
+    margin-top: -5%;
+    align-items: right;
+    margin-left: 65%;
+    width: 140px;
+    /* max-width: 60%;  */
+}
+
+/* Form and button styling for consistency */
+form {
+  /* background: #fff; */
+  padding: 20px;
+  border-radius: 8px;
+  /* box-shadow: 0 2px 10px rgba(0,0,0,0.1); */
+  margin-top: 20px;
+}
+
+input[type="text"], textarea {
+  width: 100%;
+  /* padding: 10px; */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #2e5bbd;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+#openModal {
+  background-color: #c0ceeb;
+  border: #2e5bbd 2px solid;
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  font-family: cursive;
+  margin-left:10% ;
+  padding: 20px 50px;
+  height: 94px;
+  width: 242px;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(144, 124, 124, 0.1); /* Subtle shadow for depth */
+  transition: background-color 0.2s;
+  
+}
+
+button:hover {
+  background-color: #385382;
+}
+#sortQuestions{
+  margin-left: 62px;
+  position: absolute;
+  margin-top: 40px;
+  height: 40px;
+  width: 160px;
+  
+}
+
+/* The Modal (background) */
+.modal {
+display: none; /* Hidden by default */
+position: fixed; /* Stay in place */
+z-index: 1; /* Sit on top */
+left: 0;
+top: 0;
+width: 100%; /* Full width */
+height: 100%; /* Full height */
+overflow: auto; /* Enable scroll if needed */
+background-color: rgb(0,0,0); /* Fallback color */
+background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+background-color: #fefefe;
+margin: 15% auto; /* 15% from the top and centered */
+padding: 20px;
+border: 1px solid #888;
+width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+color: #1d6891;
+float: right;
+font-size: 28px;
+font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+color: black;
+text-decoration: none;
+cursor: pointer;
+}
+
+.home-view-top{
+display: flex;
+flex-direction: column;
+/* flex-wrap: wrap; */
+/* justify-content: space-evenly; */
+/* align-items: center; */
+}
+.upvote-group.active, .downvote-group.active {
+background-color: #2e5bbd;
+color: rgb(14, 44, 154);
+}
+
+.upvote-group:hover,
+.downvote-group:hover {
+    background-color: #2b43bb;
+}
+
+.upvote-group a, .downvote-group a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.search-form{
+display: flex;
+flex-wrap: wrap;
+flex-direction: row;
+width: 60%;
+height: 30px;
+/* margin-left: 30%; */
+justify-content: space-around;
+
+input {
+  width: 50% !important;
+  height: 35px;
+  margin-left: 20%;
+}
+button{
+  margin-left: -17%;
+  height: 35px;
+}
+}
+
+.question-interaction-comp {
+display: flex;
+gap: 25px;
+}
+
+.addquestion_button{
+  margin-left: 50px;
+  margin-top: -10px;
+  width: 200px;
+  height: 60px;
+  padding: 10px;
+  background-color: #313a4f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.pen{
+  width: 40px;
+  margin-top: 5px;
+  margin-left: -65px;
+  position: absolute;
+  
+}

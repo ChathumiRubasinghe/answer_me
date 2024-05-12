@@ -1,0 +1,109 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Question extends CI_Controller {
+    public function __construct() {
+        parent::__construct();
+        // Load the necessary model
+        $this->load->model('Question_model');
+    }
+    
+    public function add() {
+        $title = $this->input->post('title');
+        $description = $this->input->post('description');
+        $user_id = $this->session->userdata('user_id'); // Get user ID from session
+    
+        $data = array(
+            'title' => $title,
+            'description' => $description,
+            'user_id' => $user_id // Include the user ID
+        );
+        $this->Question_model->add_question($data);
+        redirect('home');
+    }
+    
+
+    public function details($question_id) {
+        $user_id = $this->session->userdata('user_id');
+        // $data['question'] = $this->Question_model->get_question_details($question_id);
+        $data['question'] = $this->Question_model->get_question_details($question_id, $user_id);
+        $data['comments'] = $this->Question_model->get_comments_by_question($question_id);
+        $data['logged_in'] = $this->session->userdata('logged_in');
+        $this->load->view('question_details', $data);
+    }
+
+    public function upvote($question_id) {
+        if ($this->session->userdata('logged_in')) {
+            $user_id = $this->session->userdata('user_id');
+            $result = $this->Question_model->cast_vote($question_id, $user_id, 'up');
+            if ($result['status']) {
+                $question = $this->Question_model->get_question_details($question_id, $user_id);
+                echo json_encode([
+                    'upvotes' => $question->upvotes,
+                    'downvotes' => $question->downvotes,
+                    'currentVote' => $result['currentVote']
+                ]);
+            } else {
+                echo json_encode(['error' => 'Could not update vote.']);
+            }
+        } else {
+            echo json_encode(['error' => 'User not logged in.']);
+        }
+    }
+    
+    
+    public function downvote($question_id) {
+        if ($this->session->userdata('logged_in')) {
+            $user_id = $this->session->userdata('user_id');
+            $result = $this->Question_model->cast_vote($question_id, $user_id, 'down');
+            if ($result['status']) {
+                $question = $this->Question_model->get_question_details($question_id, $user_id);
+                echo json_encode([
+                    'upvotes' => $question->upvotes,
+                    'downvotes' => $question->downvotes,
+                    'currentVote' => $result['currentVote']
+                ]);
+            } else {
+                echo json_encode(['error' => 'Could not update vote.']);
+            }
+        } else {
+            echo json_encode(['error' => 'User not logged in.']);
+        }
+    }
+    
+
+    public function post_comment() {
+        try {
+            $question_id = $this->input->post('question_id');
+            $comment = $this->input->post('comment');
+            $user_id = $this->session->userdata('user_id');
+    
+            if (!$user_id) {
+                throw new Exception('User not logged in');
+            }
+    
+            if (empty($comment)) {
+                throw new Exception('Comment cannot be empty');
+            }
+    
+            $data = [
+                'question_id' => $question_id,
+                'user_id' => $user_id,
+                'comment' => $comment
+            ];
+    
+            $this->load->model('Question_model');
+            $inserted = $this->Question_model->add_comment($data);
+            if (!$inserted) {
+                throw new Exception('Failed to insert the comment');
+            }
+    
+            echo json_encode(['success' => true]);
+        } catch (Exception $e) {
+            log_message('error', 'Error posting comment: ' . $e->getMessage());
+            echo json_encode(['error' => $e->getMessage()]);
+        }
+    }
+    
+    
+}
